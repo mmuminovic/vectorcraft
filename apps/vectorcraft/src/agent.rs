@@ -160,6 +160,9 @@ fn args(req: &AgentRequest, port: u16, paths: &Paths) -> Vec<OsString> {
                 "approval_policy=\"never\"".to_string(),
                 format!("mcp_servers.{SERVER}.command={}", Value::String(exe)),
                 format!("mcp_servers.{SERVER}.args={toml_args}"),
+                // Codex asks before every tool without a read-only hint, and `never` turns that
+                // ask into a refusal: pre-approve VectorCraft's tools (the shell stays read-only).
+                format!("mcp_servers.{SERVER}.default_tools_approval_mode=\"approve\""),
             ] {
                 a.extend(["-c".into(), c.into()]);
             }
@@ -442,6 +445,7 @@ mod tests {
         let a = strings(args(&req, 4000, &paths()));
         assert_eq!(a.first().map(String::as_str), Some("exec"));
         assert!(a.iter().any(|x| x == r#"mcp_servers.vectorcraft.args=["--mcp-bridge","127.0.0.1:4000"]"#));
+        assert!(a.iter().any(|x| x == r#"mcp_servers.vectorcraft.default_tools_approval_mode="approve""#));
         assert!(a.last().is_some_and(|p| p.starts_with("You are inside VectorCraft") && p.ends_with("draw")));
         let req = AgentRequest { session: Some("t1".into()), ..req };
         let a = strings(args(&req, 4000, &paths()));
