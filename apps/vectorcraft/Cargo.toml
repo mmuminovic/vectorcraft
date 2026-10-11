@@ -20,6 +20,8 @@ windows7 = ["eframe/glow"]
 vectorcraft-engine = { workspace = true }
 vectorcraft-ui-egui = { workspace = true }
 vectorcraft-text = { workspace = true }
+# The MCP server Claude Code / Codex start for the agent panel (`vectorcraft --mcp-bridge`).
+vectorcraft-mcp = { workspace = true }
 eframe = { workspace = true, features = ["default_fonts", "wayland", "x11"] }
 egui = { workspace = true }
 serde_json = { workspace = true }

@@ -13,6 +13,7 @@ macro_rules! tl {
     };
 }
 
+pub mod agent_panel;
 pub mod background;
 mod brand;
 pub mod canvas;
@@ -61,6 +62,8 @@ pub mod workspaces;
 
 #[cfg(test)]
 mod tests_adjust;
+#[cfg(test)]
+mod tests_agentpanel;
 #[cfg(test)]
 mod tests_aisave;
 #[cfg(test)]
@@ -251,6 +254,9 @@ pub struct Services {
     /// [`Self::start_pick`]'s dialogs are sheets on the window (macOS): while one is open the app
     /// neither quits nor closes documents, as under the modal dialog before.
     pub dialogs_are_sheets: bool,
+    /// Starts Claude Code or Codex for the agent panel (desktop; see [`agent_panel`]). `None`
+    /// hides the app bar's agent buttons.
+    pub agent: Option<agent_panel::AgentStartFn>,
 }
 
 /// Cached canvas raster.
@@ -406,6 +412,8 @@ pub struct VectorcraftApp {
     /// This frame carries input the control channel injected ([`Self::raw_input_hook`]): it runs
     /// confined to [`Self::automation_roots`].
     synthetic_frame: bool,
+    /// The agent panel's conversations and running agent ([`agent_panel`]).
+    pub(crate) agent: agent_panel::Runtime,
 }
 
 /// A window capture asked for through the control channel (`ui.screenshot`), answered once a
@@ -458,6 +466,7 @@ impl VectorcraftApp {
             clipboard_in: None,
             pending_url: None,
             control_rx: None,
+            agent: Default::default(),
             pending_screenshots: vec![],
             queued_screenshots: vec![],
             screenshot_token: 0,
@@ -1197,6 +1206,7 @@ impl VectorcraftApp {
             dock::show(self, ui);
         }
         egui::CentralPanel::default().frame(egui::Frame::NONE.fill(t.pasteboard)).show(ui, |ui| {
+            self.agent.area = Some(ui.available_rect_before_wrap());
             if self.ui.screen_mode < 3 {
                 chrome::doc_tabs(self, ui);
             }
@@ -1207,6 +1217,7 @@ impl VectorcraftApp {
         panels::library_panel::show_window(self, &ctx);
         dialogs::show(self, &ctx);
         palette::show(self, &ctx);
+        agent_panel::show(self, &ctx);
         if self.custom_titlebar {
             titlebar::resize_zones(ui);
         }

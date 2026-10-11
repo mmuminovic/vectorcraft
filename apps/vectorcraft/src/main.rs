@@ -21,6 +21,7 @@ compile_error!("windows7 requires --target x86_64-win7-windows-msvc; the ordinar
 #[cfg(all(target_vendor = "win7", not(feature = "windows7")))]
 compile_error!("the win7 target requires --no-default-features --features windows7");
 
+mod agent;
 mod automation_args;
 mod clipboard;
 #[cfg(feature = "wgpu")]
@@ -589,6 +590,12 @@ fn native_options(custom_titlebar: bool) -> eframe::NativeOptions {
 }
 
 fn main() -> std::process::ExitCode {
+    // The MCP server Claude Code / Codex start for the agent panel: no window, no log file (it
+    // would rotate the window's log), stdout is the MCP channel.
+    let raw_args: Vec<std::ffi::OsString> = std::env::args_os().skip(1).collect();
+    if raw_args.first().is_some_and(|a| a == "--mcp-bridge") {
+        return if agent::mcp_bridge_main(&raw_args) { std::process::ExitCode::SUCCESS } else { std::process::ExitCode::FAILURE };
+    }
     // Validate roots before logging, font scans, preferences or the window: a missing value
     // must not clear an environment root and start the control channel without confinement.
     let mut control_port: Option<u16> = std::env::var("VECTORCRAFT_CONTROL_PORT").ok().and_then(|p| p.parse().ok());
@@ -806,6 +813,9 @@ fn main() -> std::process::ExitCode {
                         log::info!("control channel confined to the automation roots: read {:?}, write {:?}", roots.read_root(), roots.write_root());
                     }
                 }
+                // The agent panel reuses the launch's control channel; with none (or `--control
+                // 0`, whose port is unknown) it starts its own at the first message.
+                app.services.agent = Some(agent::service(control_port.filter(|p| *p != 0)));
                 #[cfg(target_os = "macos")]
                 {
                     open_documents::set_ui(&cc.egui_ctx);

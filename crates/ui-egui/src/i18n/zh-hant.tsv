@@ -3534,3 +3534,11 @@ lighting	Light	光源
 	Move Guide to Layer	將參考線移至圖層
 	Linux Display Server	Linux 顯示伺服器
 	X11 (XWayland)	X11 (XWayland)
+# Agent panel (Claude Code / Codex)
+	AI agents are only available in the desktop app.	AI 代理僅在桌面應用程式中可用。
+	Describe what to change, for example: “Draw a red circle in the middle of the artboard.”	描述要變更的內容,例如:「在工作區域中央畫一個紅色圓形。」
+	Message	訊息
+	New Chat	新對話
+	Send	傳送
+	Stopped.	已停止。
+	Working…	處理中…

@@ -3665,3 +3665,11 @@ axis	Both	Ambos
 @msg	invalid native panel set	conjunto de painéis nativos inválido
 @msg	missing panel layout	layout de painéis ausente
 @msg	unsupported native docking operation	operação de encaixe nativa não suportada
+# Agent panel (Claude Code / Codex)
+	AI agents are only available in the desktop app.	Os agentes de IA estão disponíveis apenas no aplicativo para desktop.
+	Describe what to change, for example: “Draw a red circle in the middle of the artboard.”	Descreva o que mudar, por exemplo: “Desenhe um círculo vermelho no meio da prancheta.”
+	Message	Mensagem
+	New Chat	Novo chat
+	Send	Enviar
+	Stopped.	Interrompido.
+	Working…	Processando…

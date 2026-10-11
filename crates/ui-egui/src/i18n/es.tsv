@@ -4152,3 +4152,11 @@ lighting	Light	Luz
 @msg	unsupported native docking operation	Operación nativa de anclaje no admitida
 	Linux Display Server	Servidor de pantalla de Linux
 	X11 (XWayland)	X11 (XWayland)
+# Agent panel (Claude Code / Codex)
+	AI agents are only available in the desktop app.	Los agentes de IA solo están disponibles en la aplicación de escritorio.
+	Describe what to change, for example: “Draw a red circle in the middle of the artboard.”	Describe qué cambiar, por ejemplo: «Dibuja un círculo rojo en el centro de la mesa de trabajo».
+	Message	Mensaje
+	New Chat	Nuevo chat
+	Send	Enviar
+	Stopped.	Detenido.
+	Working…	Trabajando…

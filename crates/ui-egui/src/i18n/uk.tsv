@@ -4134,3 +4134,11 @@ lighting	Light	Світло
 @msg	unsupported native docking operation	Непідтримувана власна операція прикріплення
 	Linux Display Server	Дисплейний сервер Linux
 	X11 (XWayland)	X11 (XWayland)
+# Agent panel (Claude Code / Codex)
+	AI agents are only available in the desktop app.	ШІ-агенти доступні лише в настільному застосунку.
+	Describe what to change, for example: “Draw a red circle in the middle of the artboard.”	Опишіть, що змінити, наприклад: «Намалюй червоне коло в центрі монтажної області».
+	Message	Повідомлення
+	New Chat	Новий чат
+	Send	Надіслати
+	Stopped.	Зупинено.
+	Working…	Виконується…

@@ -239,6 +239,26 @@ impl Dialog {
     }
 }
 
+/// A coding agent CLI the agent panel can drive VectorCraft with, through its MCP tools.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub enum AgentKind {
+    Claude,
+    Codex,
+}
+
+impl AgentKind {
+    pub const ALL: [AgentKind; 2] = [AgentKind::Claude, AgentKind::Codex];
+
+    /// The product name, shown on the app bar button and the panel.
+    pub fn label(self) -> &'static str {
+        match self {
+            AgentKind::Claude => "Claude Code",
+            AgentKind::Codex => "Codex",
+        }
+    }
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(default)]
 pub struct UiState {
@@ -309,6 +329,10 @@ pub struct UiState {
     pub status: String,
     pub palette_open: bool,
     pub palette_query: String,
+    /// The AI agent panel (`agent_panel`): which coding agent it talks to, or `None` when closed.
+    /// Not saved: the app starts with it closed.
+    #[serde(skip)]
+    pub agent_panel: Option<AgentKind>,
     /// Screen mode: 0 normal, 1 full screen with menu, 2 full screen, 3 presentation. Not saved:
     /// the app always starts in Normal Screen Mode, with its menus and panels (#472: a saved
     /// Presentation Mode came back on restart with no way out).
@@ -618,6 +642,7 @@ impl Default for UiState {
             status: String::new(),
             palette_open: false,
             palette_query: String::new(),
+            agent_panel: None,
             screen_mode: 0,
             draw_mode: 0,
             about: false,

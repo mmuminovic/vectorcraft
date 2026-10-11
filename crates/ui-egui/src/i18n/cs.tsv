@@ -4177,3 +4177,11 @@ effect	Regular	Pravidelný
 @msg	missing panel layout	chybí rozložení panelů
 @msg	unsupported native docking operation	nepodporovaná nativní operace ukotvení
 @msg	this kind of brush has no options dialog yet	tento druh štětce zatím nemá dialogové okno možností
+# Agent panel (Claude Code / Codex)
+	AI agents are only available in the desktop app.	AI agenti jsou dostupní jen v desktopové aplikaci.
+	Describe what to change, for example: “Draw a red circle in the middle of the artboard.”	Popište, co se má změnit, například: „Nakresli červený kruh doprostřed kreslicího plátna.“
+	Message	Zpráva
+	New Chat	Nový chat
+	Send	Odeslat
+	Stopped.	Zastaveno.
+	Working…	Pracuji…

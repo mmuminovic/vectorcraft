@@ -91,6 +91,11 @@ pub fn app_bar(app: &mut VectorcraftApp, ui: &mut Ui) {
                 ui.add_space(10.0);
                 crate::community::discord_button(app, ui, false);
             }
+            // Claude Code and Codex (desktop only), while there is room for them.
+            if crate::agent_panel::has_buttons(app) && ui.available_width() >= crate::agent_panel::BUTTONS_WIDTH {
+                ui.add_space(10.0);
+                crate::agent_panel::app_bar_buttons(app, ui);
+            }
             if app.services.native_menu.is_some() {
                 let title = ui.painter().layout_no_wrap("VectorCraft".into(), egui::FontId::proportional(13.5), t.text);
                 let title_rect = egui::Rect::from_center_size(full.center(), title.size());

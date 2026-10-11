@@ -37,6 +37,17 @@ pub fn start(port: u16, ctx: egui::Context) -> Receiver<ControlRequest> {
     rx
 }
 
+/// Starts the control server on a free loopback port (the agent panel's MCP server connects to
+/// it), returning the requests and the port.
+pub fn start_ephemeral(ctx: egui::Context) -> std::io::Result<(Receiver<ControlRequest>, u16)> {
+    let listener = TcpListener::bind(("127.0.0.1", 0))?;
+    let port = listener.local_addr()?.port();
+    log::info!("agent control server listening on 127.0.0.1:{port}");
+    let (tx, rx) = channel::<ControlRequest>();
+    std::thread::spawn(move || accept_loop(listener, tx, ctx));
+    Ok((rx, port))
+}
+
 fn accept_loop(listener: TcpListener, tx: Sender<ControlRequest>, ctx: egui::Context) {
     let open = Arc::new(AtomicUsize::new(0));
     for mut stream in listener.incoming().flatten() {

@@ -4148,3 +4148,11 @@ lighting	Light	ライト
 @msg	unsupported native docking operation	ネイティブドッキング操作は未対応です
 	Linux Display Server	Linux ディスプレイサーバー
 	X11 (XWayland)	X11 (XWayland)
+# Agent panel (Claude Code / Codex)
+	AI agents are only available in the desktop app.	AI エージェントはデスクトップアプリでのみ使用できます。
+	Describe what to change, for example: “Draw a red circle in the middle of the artboard.”	変更したい内容を説明してください。例:「アートボードの中央に赤い円を描いて。」
+	Message	メッセージ
+	New Chat	新しいチャット
+	Send	送信
+	Stopped.	停止しました。
+	Working…	処理中…

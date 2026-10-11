@@ -4502,6 +4502,7 @@ dependencies = [
  "rfd",
  "serde_json",
  "vectorcraft-engine",
+ "vectorcraft-mcp",
  "vectorcraft-text",
  "vectorcraft-ui-egui",
  "wayland-client",
