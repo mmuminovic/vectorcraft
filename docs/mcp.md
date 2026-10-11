@@ -724,6 +724,18 @@ A malformed or unknown id is an error naming that value; the entire selection is
 All three commands return `{count, ids}` for the resulting selection, in selection order.
 An empty array clears the selection for `select.set` and leaves it alone for Add and Toggle.
 
+`select.key {id}` makes `id` the key object that Align aligns to and Distribute Spacing spaces from (`object.align` without `to`, `object.distributeSpacing` with `spacing`), and `select.key {}` cancels it.
+The id must name a selected top-level object.
+Layers, compound-path members and objects inside another selected object are not top-level objects.
+Any other id is an error naming that value, and the key is left unchanged.
+A null `id` is an error too.
+A click with the Selection tool on a selected top-level object, while two or more objects are selected, runs `select.key {id}`, and a click on the key object again runs `select.key {}`.
+On a single selected object, or on a group selected with only its own members, `select.key` sets no key.
+It returns `{key}`, the key object's id or null.
+`document.inspect` (the `inspect_document` tool) reports the key object as `key`, null without one.
+The `ui.pointer` and `pointer_gesture` replies list it as `key` beside `selection`.
+The command palette lists `select.key` as Cancel Key Object and runs it without an id.
+
 `edit.clear {ids?}` deletes the exact selected objects, including individual compound-path members;
 their unselected siblings remain in the compound. Supplying `ids` works without a selection and
 overrides selected anchors or guides. Every explicit id is validated before any deletion; a malformed
@@ -1555,7 +1567,9 @@ The Selection & Anchor Display and General preferences apply to `pointer_gesture
 - `transformPatternTiles` (off by default): the default of the transforms' `patterns` param (`object.transform`,
   `object.move`, `object.rotate`, `object.scale`, `object.reflect`, `object.shear`, `object.transformEach`,
   `object.align`, `object.distribute`, `object.distributeSpacing`, the Selection and transform tools, the dialogs'
-  Transform Patterns): pattern fills and strokes move with the art.
+  Transform Patterns) and of the same param on the commands that move or duplicate art with an artboard (`artboard.move`
+  and the Artboard tool, `artboard.duplicate`, `artboard.rearrange`, `artboard.setProps`): pattern fills and strokes
+  move with the art.
 - `selectSameTintPercent` (off by default): `select.same.fillColor`, `strokeColor` and `fillAndStroke` take every tint
   of a global or spot swatch; on, only the same tint.
 
@@ -1834,7 +1848,8 @@ step (`edit.pasteInPlace`, `edit.pasteInFront` and `edit.pasteInBack` put it whe
 pastes only the art), in this document or another; the result's `artboard` is the new artboard's index.
 `artboard.duplicate {index?, art?}` (Window › Artboards › Duplicate Artboards, or a row dragged onto New Artboard)
 does the same in one step → `{index, ids}`, and `artboard.move {copy: true, moveArt: true}` is the Artboard tool's
-Alt-drag.
+Alt-drag. These two commands also move the pattern tiles of the copies when `patterns` is true (default: prefs
+`transformPatternTiles`); `edit.paste` leaves the tiles of a pasted artboard's art where they were.
 
 Scale Artwork with Artboard (#602): `artboard.setProps {index, x?, y?, width?, height?, scaleArt: true}` resizes an
 artboard and scales the art fully inside it, and its artboard guides, from the old rectangle onto the new one, each side

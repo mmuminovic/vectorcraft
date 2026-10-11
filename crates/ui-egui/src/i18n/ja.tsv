@@ -2151,6 +2151,9 @@
 	Rectangle Properties:	長方形のプロパティ:
 	Rectangle Tool	長方形ツール
 	Rectangular Grid	長方形グリッド
+# Rectangular Grid click dialog.
+	Horizontal Dividers:	水平方向の分割線:
+	Vertical Dividers:	垂直方向の分割線:
 	Rectangular Grid Tool	長方形グリッドツール
 	Red	レッド
 	Redefine Character Style	文字スタイルを再定義
@@ -2392,7 +2395,6 @@
 	Set Anchors	アンカーポイントを設定
 	Set Bounds	境界を設定
 	Set Current Layer	現在のレイヤーを設定
-	Set Key Object	キーオブジェクトを設定
 	Set Keyboard Shortcut	キーボードショートカットを設定
 	Set Mesh Point Color	メッシュポイントのカラーを設定
 	Set Preference	環境設定を設定
@@ -3449,6 +3451,7 @@ theme	Appearance	外観
 @msg	no such segment	指定されたセグメントが見つかりません
 @msg	no such subpath	指定されたサブパスが見つかりません
 @msg	object {id} is not a path	オブジェクト {id} はパスではありません
+@msg	object {id} is not a selected top-level object	オブジェクト {id} は選択されている最上位のオブジェクトではありません
 @msg	nothing to redo	やり直す操作がありません
 @msg	nothing to undo	取り消す操作がありません
 @msg	Expand Appearance: the selection has a basic appearance	アピアランスを分割: 選択範囲は基本アピアランスです

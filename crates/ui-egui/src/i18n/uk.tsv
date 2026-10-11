@@ -2140,6 +2140,9 @@
 	Rectangle: Sunshine	Прямокутник: Сонце
 	Rectangle…	Прямокутник…
 	Rectangular Grid	Прямокутна сітка
+# Rectangular Grid click dialog.
+	Horizontal Dividers:	Горизонтальні розділювачі:
+	Vertical Dividers:	Вертикальні розділювачі:
 	Rectangular Grid Tool	Інструмент «Прямокутна сітка»
 	Red	Червоний
 	Redefine Character Style	Перевизначити стиль символу
@@ -2517,7 +2520,6 @@
 	Set base color to the current color	Зробити поточний колір базовим
 	Set Bounds	Задати межі
 	Set Current Layer	Зробити шар поточним
-	Set Key Object	Задати ключовий об’єкт
 	Set Keyboard Shortcut	Задати клавіші
 	Set Mesh Point Color	Задати колір точки сітки
 	Set Preference	Задати налаштування
@@ -3666,6 +3668,7 @@ axis	Both	Обидві
 @msg	nothing to wrap	нічого обтікати
 @msg	object {0} cannot have children	об’єкт {0} не може мати нащадків
 @msg	object {id} is not a path	об’єкт {id} не є контуром
+@msg	object {id} is not a selected top-level object	об’єкт {id} не є виділеним об’єктом верхнього рівня
 @msg	page size {w} × {h}	розмір сторінки {w} × {h}
 @msg	page {0} does not exist (the PDF has {1})	сторінка {0} не існує (в PDF{1})
 @msg	paste unavailable	вставка недоступна

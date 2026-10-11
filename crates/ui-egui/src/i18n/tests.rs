@@ -161,8 +161,11 @@ fn bundled_catalogs_are_consistent() {
                 assert_eq!(src.ends_with('…'), tr.ends_with('…'), "{}: ellipsis mismatch: {src:?}", l.code);
             }
             if ctx == "@id" {
-                let known =
-                    crate::menus::UI_COMMANDS.iter().any(|c| c.0 == src) || vectorcraft_engine::cmd::command_specs().iter().any(|c| c.id == src);
+                // A command id, or an effect id: Effect menu items share `effect.apply` /
+                // `effect.dialog`, so the effect's own id is what tells them apart.
+                let known = crate::menus::UI_COMMANDS.iter().any(|c| c.0 == src)
+                    || vectorcraft_engine::cmd::command_specs().iter().any(|c| c.id == src)
+                    || vectorcraft_effects::effect_catalog().iter().any(|e| e.id == src);
                 assert!(known, "{}: unknown command id {src:?}", l.code);
             }
         }
@@ -839,6 +842,10 @@ fn czech_reads_as_czech() {
         assert_eq!(trn(cs(), n, "{n} Layer", "{n} Layers"), format!("{n} {word}"));
     }
     assert_eq!(tr_ctx(cs(), "axis", "Both"), "Obě");
+    // "Add" is Unite in Effect › Pathfinder (an `@id` row for the effect id); "Přidat" elsewhere.
+    assert_eq!(tr(cs(), "Add"), "Přidat");
+    assert_eq!(tr_id(cs(), "pathfinder.add", "Add"), "Sjednotit");
+    assert_eq!(tr_id(cs(), "pathfinder.intersect", "Intersect"), "Protnout");
     let nested = "command `object.group` is not available right now: nothing selected";
     assert_eq!(message(cs(), nested), "příkaz `object.group` nyní není k dispozici: nic není vybráno");
 }
@@ -991,6 +998,27 @@ fn align_reflect_and_shear_param_errors_are_translated() {
             let shown = message(Lang::from_code(code).unwrap(), &e.to_string());
             assert!(!shown.contains(msg.as_str()), "{code}: {shown}");
         }
+    }
+}
+
+/// The parameter error of `select.key` for an id that isn't a selected top-level object, whose
+/// text [`message_literals`] doesn't read, is translated whole in each language of
+/// [`COMPLETE_MESSAGES`].
+#[test]
+fn select_key_param_error_is_translated() {
+    use serde_json::json;
+    let mut s = vectorcraft_engine::Session::new();
+    s.execute("file.new", &json!({})).unwrap();
+    let rectangle = |s: &mut vectorcraft_engine::Session, x: u64| {
+        s.execute("shape.rectangle", &json!({"x": x, "y": 0, "width": 10, "height": 10})).unwrap()["id"].clone()
+    };
+    let [a, b, unselected] = [0, 50, 100].map(|x| rectangle(&mut s, x));
+    s.execute("select.set", &json!({"ids": [a, b]})).unwrap();
+    let e = s.execute("select.key", &json!({"id": unselected})).unwrap_err();
+    let vectorcraft_engine::EngineError::BadParams { msg, .. } = &e else { panic!("{e}") };
+    for code in COMPLETE_MESSAGES {
+        let shown = message(Lang::from_code(code).unwrap(), &e.to_string());
+        assert!(!shown.contains(msg.as_str()), "{code}: {shown}");
     }
 }
 

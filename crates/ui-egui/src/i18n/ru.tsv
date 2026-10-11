@@ -2144,6 +2144,9 @@
 	Rectangle: Sunshine	Прямоугольник: Солнце
 	Rectangle…	Прямоугольник…
 	Rectangular Grid	Прямоугольная сетка
+# Rectangular Grid click dialog.
+	Horizontal Dividers:	Горизонтальные разделители:
+	Vertical Dividers:	Вертикальные разделители:
 	Rectangular Grid Tool	Инструмент «Прямоугольная сетка»
 	Red	Красный
 	Redefine Character Style	Переопределить стиль символа
@@ -2521,7 +2524,6 @@
 	Set base color to the current color	Сделать текущий цвет базовым
 	Set Bounds	Задать границы
 	Set Current Layer	Сделать слой текущим
-	Set Key Object	Задать ключевой объект
 	Set Keyboard Shortcut	Задать сочетание клавиш
 	Set Mesh Point Color	Задать цвет точки сетки
 	Set Preference	Задать настройку
@@ -3678,6 +3680,7 @@ axis	Both	Оба
 @msg	nothing to wrap	нечего обтекать
 @msg	object {0} cannot have children	объект {0} не может иметь потомков
 @msg	object {id} is not a path	объект {id} не является контуром
+@msg	object {id} is not a selected top-level object	объект {id} не является выделенным объектом верхнего уровня
 @msg	page size {w} × {h}	размер страницы {w} × {h}
 @msg	page {0} does not exist (the PDF has {1})	страница {0} не существует (в PDF {1})
 @msg	paste unavailable	вставка недоступна

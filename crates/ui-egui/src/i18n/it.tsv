@@ -2148,6 +2148,9 @@
 	Rectangle: Sunshine	Rettangolo: Sole
 	Rectangle…	Rettangolo…
 	Rectangular Grid	Griglia rettangolare
+# Rectangular Grid click dialog.
+	Horizontal Dividers:	Divisori orizzontali:
+	Vertical Dividers:	Divisori verticali:
 	Rectangular Grid Tool	Strumento Griglia rettangolare
 	Red	Rosso
 	Redefine Character Style	Ridefinisci stile carattere
@@ -2525,7 +2528,6 @@
 	Set base color to the current color	Imposta il colore corrente come colore di base
 	Set Bounds	Imposta limiti
 	Set Current Layer	Imposta livello corrente
-	Set Key Object	Imposta oggetto chiave
 	Set Keyboard Shortcut	Imposta scelta rapida da tastiera
 	Set Mesh Point Color	Imposta colore punto trama
 	Set Preference	Imposta preferenza
@@ -3682,6 +3684,7 @@ axis	Both	Entrambi
 @msg	nothing to wrap	niente da avvolgere
 @msg	object {0} cannot have children	l'oggetto {0} non può avere elementi figli
 @msg	object {id} is not a path	l'oggetto {id} non è un tracciato
+@msg	object {id} is not a selected top-level object	l'oggetto {id} non è un oggetto selezionato di primo livello
 @msg	page size {w} × {h}	dimensioni pagina {w} × {h}
 @msg	page {0} does not exist (the PDF has {1})	la pagina {0} non esiste (il PDF ne ha {1})
 @msg	paste unavailable	impossibile incollare

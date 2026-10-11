@@ -2072,6 +2072,9 @@
 	Rectangle: Sunshine	矩形：阳光
 	Rectangle…	矩形…
 	Rectangular Grid	矩形网格
+# Rectangular Grid click dialog.
+	Horizontal Dividers:	水平分隔线：
+	Vertical Dividers:	垂直分隔线：
 	Rectangular Grid Tool	矩形网格工具
 	Red	红
 	Redefine Character Style	重新定义字符样式
@@ -2414,7 +2417,6 @@
 	Set base color to the current color	将基色设为当前颜色
 	Set Bounds	设置边界
 	Set Current Layer	设为当前图层
-	Set Key Object	设为关键对象
 	Set Keyboard Shortcut	设置键盘快捷键
 	Set Mesh Point Color	设置网格点颜色
 	Set Preference	设置首选项

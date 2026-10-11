@@ -2145,6 +2145,9 @@
 	Rectangle: Sunshine	Rectangle : soleil
 	Rectangle…	Rectangle…
 	Rectangular Grid	Grille rectangulaire
+# Rectangular Grid click dialog.
+	Horizontal Dividers:	Séparations horizontales :
+	Vertical Dividers:	Séparations verticales :
 	Rectangular Grid Tool	Outil Grille rectangulaire
 	Red	Rouge
 	Redefine Character Style	Redéfinir le style de caractère
@@ -2522,7 +2525,6 @@
 	Set base color to the current color	Utiliser la couleur actuelle comme couleur de base
 	Set Bounds	Définir les limites
 	Set Current Layer	Définir le calque actif
-	Set Key Object	Définir l’objet clé
 	Set Keyboard Shortcut	Définir un raccourci clavier
 	Set Mesh Point Color	Définir la couleur du point de filet
 	Set Preference	Définir une préférence
@@ -3679,6 +3681,7 @@ axis	Both	Les deux
 @msg	nothing to wrap	rien à envelopper
 @msg	object {0} cannot have children	l’objet {0} ne peut pas avoir d’enfants
 @msg	object {id} is not a path	l’objet {id} n’est pas un tracé
+@msg	object {id} is not a selected top-level object	l’objet {id} n’est pas un objet sélectionné de premier niveau
 @msg	page size {w} × {h}	format de page {w} × {h}
 @msg	page {0} does not exist (the PDF has {1})	la page {0} n’existe pas (le PDF en a {1})
 @msg	paste unavailable	collage indisponible
